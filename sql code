@@ -1,0 +1,358 @@
+After selecting the database, create a table within it using the CREATE TABLE command. For this tutorial’s example, we’ll create a table named product_information to store inventory and sales information for a small tea shop. This table will hold the following eight columns:
+
+product_id: represents the values of the int data type and will serve as the table’s primary key. This means each value in this column will function as a unique identifier for its respective row.
+product_name: details the names of the products using the varchar data type with a maximum of 30 characters.
+product_type: stores the types of products, as demonstrated by the varchar data type with a maximum of 30 characters.
+total_inventory: represents how many units of each product are left in storage, using the int data type with a maximum of 200.
+product_cost: displays the price of each product purchased at cost using the decimal data type with a maximum of 3 values to the left, and 2 values after the decimal point.
+product_retail: stores prices for each product sold at retail, as shown by the decimal data type with a maximum of 3 values to the left, and 2 values after the decimal point.
+store_units: using values of the int data type, displays how many units of the specific product are available for in-store sales inventory.
+online_units: represents how many units of the specific product are available for online sales inventory using values of the int data type
+Create this sample table by running the following command:
+
+CREATE TABLE product_information (
+product_id int, 
+product_name varchar(30), 
+product_type varchar(30), 
+total_inventory int(200),
+product_cost decimal(3, 2), 
+product_retail decimal(3, 2), 
+store_units int(100),
+online_units int(100),
+PRIMARY KEY (product_id)
+); 
+Output
+Query OK, 0 rows affected, 0 warnings (0.01 sec)
+Now insert some sample data into the empty table:
+
+INSERT INTO product_information
+(product_id, product_name, product_type, total_inventory, product_cost, product_retail, store_units, online_units)
+VALUES
+(1, 'chamomile', 'tea', 200, 5.12, 7.50, 38, 52),
+(2, 'chai', 'tea', 100, 7.40, 9.00, 17, 27),
+(3, 'lavender', 'tea', 200, 5.12, 7.50, 50, 112),
+(4, 'english_breakfast', 'tea', 150, 5.12, 7.50, 22, 74),
+(5, 'jasmine', 'tea', 150, 6.17, 7.50, 33, 92),
+(6, 'matcha', 'tea', 100, 6.17, 7.50, 12, 41),
+(7, 'oolong', 'tea', 75, 7.40, 9.00, 10, 29),
+(8, 'tea sampler', 'tea', 50, 6.00, 8.50, 18, 25),
+(9, 'ceramic teapot', 'tea item', 30, 7.00, 9.75, 8, 15),
+(10, 'golden teaspoon', 'tea item', 100, 2.00, 5.00, 18, 67);
+Output
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+Once you’ve inserted the data, you’re ready to begin using mathematical expressions.
+
+Calculating with Mathematical Expressions
+In SQL, you typically use SELECT to query your database and retrieve the desired result set. However, you can also use the SELECT keyword to perform a variety of mathematical operations.
+
+Keep in mind that in a real-life scenario, SQL is primarily used to query and make calculations from values in your actual database. But for this section, you’ll use SELECT solely for numerical values to get familiar with the syntax of mathematical expressions and operators.
+
+Before you begin, here’s an overview of the operators you can use to perform six arithmetic operations in SQL. Please note this list is not comprehensive and that many RDBMSs have a unique set of mathematical operators:
+
+Addition uses the + symbol
+Subtraction uses the - symbol
+Multiplication uses the * symbol
+Division uses the / symbol
+Modulo operations use the % symbol
+Exponentiation uses POW(x,y)
+You can practice running different types of calculations with your own value combinations. We’ll demonstrate using the following examples, starting with an addition equation:
+
+SELECT 893 + 579;
+Output
++-----------+
+| 893 + 579 |
++-----------+
+|      1472 |
++-----------+
+1 row in set (0.00 sec)
+Note that because you’re not retrieving any data from the database and you’re only calculating raw numbers, you don’t need to include a FROM clause in this or other example queries in this section.
+
+Now perform a calculation with the subtraction operator. Also, be aware that you can calculate values with decimals like the following:
+
+SELECT 437.82 - 66.34;
+Output
++----------------+
+| 437.82 - 66.34 |
++----------------+
+|         371.48 |
++----------------+
+1 row in set (0.00 sec)
+You can include multiple values and operators in a single calculation in SQL. The following example calculation uses three multiplication operators to find the product of four numbers:
+
+SELECT 60 * 1234 * 2 * 117; 
+Output
++---------------------+
+| 60 * 1234 * 2 * 117 |
++---------------------+
+|            17325360 |
++---------------------+
+1 row in set (0.00 sec)
+Next, calculate a division problem that combines a decimal value and a whole number value, such as the following:
+
+SELECT 2604.56 / 41;
+Output
++--------------+
+| 2604.56 / 41 |
++--------------+
+|    63.525854 |
++--------------+
+1 row in set (0.00 sec)
+Another division operator is %, or a modulo operator, which calculates the remaining value after dividing the dividend by the divisor:
+
+SELECT 38 % 5;
+Output
++--------+
+| 38 % 5 |
++--------+
+|      3 |
++--------+
+1 row in set (0.00 sec)
+Another operator that may be useful is POW(x,y), which calculates the power of the exponent (y) for the specified base-value (x):
+
+SELECT POW(99,9);
+Output
++---------------------+
+| POW(99,9)       	|
++---------------------+
+| 9.13517247483641e17 |
++---------------------+
+1 row in set (0.01 sec)
+Now that you’ve practiced calculating with each operation on its own, you can try combining different mathematical operators to practice more complex mathematical equations.
+
+Understanding Order of Operations in SQL
+You may be familiar with the term PEMDAS, which stands for parentheses, exponents, multiplication, division, addition, and subtraction. This term serves as a guideline for the order of operations necessary to solve more complex equations. PEMDAS is the term used in the U.S., while other countries may use different acronyms to represent their order of operations rule.
+
+When it comes to combining different mathematical operations nested within parentheses, SQL reads them left to right, and then values beginning from the inside to the outside. For this reason, ensure your values within parentheses accurately capture the problem you’re trying to solve.
+
+Try a calculation using parentheses and a couple of different operators:
+
+SELECT (2 + 4 ) * 8; 
+Output
++-----------+
+| (2+4) * 8 |
++-----------+
+|        48 |
++-----------+
+1 row in set (0.00 sec)
+Remember, parentheses placement matters and if you’re not careful, the entire result can change. For example, the following uses the same three values and operators, but with a different parentheses placement, this produces a different result:
+
+SELECT 2 + (4  * 8); 
+Output
++-------------+
+| 2 + (4 * 8) |
++-------------+
+|          34 |
++-------------+
+1 row in set (0.00 sec)
+If you prefer to perform calculations without parentheses, you can do that as well. Remember that there is still the order of operations rule; therefore, similar to the parentheses placement, verify that this is the equation you want based on the operation order it will be evaluated upon. In the following example, you’ll notice that the division operation takes precedence over the subtraction operator and results in a negative value:
+
+SELECT 100 / 5 - 300;
+Output
++---------------+
+| 100 / 5 - 300 |
++---------------+
+|     -280.0000 |
++---------------+
+1 row in set (0.00 sec)
+You’ve successfully used mathematical expressions for numeric calculations and for complex calculations by combining various operators. Next, you’ll use the sample data to make calculations with aggregate functions and generate new information about your data.
+
+Analyzing Data with Aggregate Functions
+Imagine that you’re the owner of a small tea shop, and you want to perform calculations pertinent to the information you’ve stored in your database. SQL can use mathematical expressions to query and manipulate data by retrieving it from your database table and different columns. This helps with generating new information about the data you’re interested in analyzing. In this section, you’ll practice querying and manipulating sample data with aggregate functions to find information about the tea shop’s business.
+
+The primary aggregate functions in SQL include SUM, MAX, MIN, AVG, and COUNT. The SUM function adds all of the values in a column. For example, use SUM to add up the amount for the total_inventory column in your sample data set:
+
+SELECT SUM(total_inventory) FROM product_information;
+Output
++----------------------+
+| SUM(total_inventory) |
++----------------------+
+|                 1155 |
++----------------------+
+1 row in set (0.00 sec)
+The MAX function finds the maximum value held in the selected column. For this example, use MAX to query the maximum amount spent for products listed in the product_cost column, and use the AS statement to re-label the header so it reads more clearly:
+
+SELECT MAX(product_cost) AS cost_max 
+FROM product_information;
+Output
++----------+
+| cost_max |
++----------+
+|     7.40 |
++----------+
+1 row in set (0.00 sec)
+The MIN function is the opposite of the MAX function because it calculates the minimum value. Use MIN to query for the minimum amount spent for product_retail:
+
+SELECT MIN(product_retail) AS retail_min 
+FROM product_information;
+Output
++------------+
+| retail_min |
++------------+
+|       5.00 |
++------------+
+1 row in set (0.00 sec)
+The AVG function calculates the average of all the values from the specified column in your table. Also, note that you can run more than one aggregate function in the same query. Try combining a query to find the average cost of products sold at retail and products purchased at cost:
+
+SELECT AVG(product_retail) AS retail_average, 
+AVG(product_cost) AS cost_average 
+FROM product_information;
+Output
++----------------+--------------+
+| retail_average | cost_average |
++----------------+--------------+
+|       7.875000 |     5.750000 |
++----------------+--------------+
+1 row in set (0.00 sec)
+The COUNT function operates differently from the others because it calculates a value from the table itself by counting the number of rows returned by the query. Use the COUNT function with the WHERE statement to query the number of products whose retail value is more than $8.00:
+
+SELECT COUNT(product_retail) 
+FROM product_information 
+WHERE product_retail > 8.00;
+Output
++-----------------------+
+| COUNT(product_retail) |
++-----------------------+
+|                     4 |
++-----------------------+
+1 row in set (0.00 sec)
+Now query the number of products from product_cost that were purchased by the store for more than $8.00:
+
+SELECT COUNT(product_cost) 
+FROM product_information 
+WHERE product_cost > 8.00;
+Output
++---------------------+
+| COUNT(product_cost) |
++---------------------+
+|                   0 |
++---------------------+
+1 row in set (0.00 sec)
+You’ve successfully used aggregate functions to provide a summary of values such as the maximum, minimum, average, and count. You retrieved this information from the sample data to simulate a real-world scenario. In the final section, you’ll apply everything you’ve learned about mathematical expressions and aggregate functions to perform more detailed queries and analyses on the sample data for the small tea shop.
+
+Applying Mathematical Expressions in a Business Scenario
+This section provides a few example scenarios that involve performing data analysis to help the tea shop owners with decision-making as it relates to their business.
+
+As a first scenario, calculate the total units currently available in inventory to understand how many products are remaining for in-store and online sales. This query will also include the DESC statement to organize the data from the largest to smallest amount. Typically RDBMSs will default to ascending order, but this example includes the DESC option which allows you to view the data in descending order:
+
+SELECT product_name, 
+total_inventory - (store_units + online_units) 
+AS remaining_inventory 
+FROM product_information 
+ORDER BY(remaining_inventory) DESC;
+Output
++-------------------+---------------------+
+| product_name      | remaining_inventory |
++-------------------+---------------------+
+| chamomile         |                 110 |
+| chai              |                  56 |
+| english_breakfast |                  54 |
+| matcha            |                  47 |
+| lavender          |                  38 |
+| oolong            |                  36 |
+| jasmine           |                  25 |
+| golden teaspoon   |                  15 |
+| tea sampler       |                   7 |
+| ceramic teapot    |                   7 |
++-------------------+---------------------+
+10 rows in set (0.00 sec)
+This query is useful because it calculates the remaining inventory, which can help the tea shop owners make plans to purchase more orders if they’re running low on a product.
+
+For the next scenario, you’ll analyze and compare the amount of revenue from in-store and online sales:
+
+SELECT product_name, 
+(online_units * product_retail) AS o, 
+(store_units * product_retail) AS s 
+FROM product_information;
+Output
+
++-------------------+--------+--------+
+| product_name      | o      | s      |
++-------------------+--------+--------+
+| chamomile         | 390.00 | 285.00 |
+| chai              | 243.00 | 153.00 |
+| lavender          | 840.00 | 375.00 |
+| english_breakfast | 555.00 | 165.00 |
+| jasmine           | 690.00 | 247.50 |
+| matcha            | 307.50 |  90.00 |
+| oolong            | 261.00 |  90.00 |
+| tea sampler       | 212.50 | 153.00 |
+| ceramic teapot    | 146.25 |  78.00 |
+| golden teaspoon   | 335.00 |  90.00 |
++-------------------+--------+--------+
+10 rows in set (0.00 sec)
+Next, calculate the total revenue from in-store and online sales using the SUM function and several mathematical operators:
+
+SELECT SUM(online_units * product_retail) + 
+SUM(store_units * product_retail) 
+AS total_sales 
+FROM product_information;
+Output
++-------------+
+| total_sales |
++-------------+
+|     5706.75 |
++-------------+
+1 row in set (0.00 sec)
+Performing these queries is important for two reasons. The first reason is so that the tea shop owners can evaluate which items are best-sellers and prioritize those products when purchasing more in the future. Second, they can analyze how well the tea shop performed overall with products sales in-store and online.
+
+Next, you’ll find the profit margin for each product. The profit margin for a given product is the amount of revenue that the business gains for each unit of that product that it sells. To understand how much revenue you earned, you can multiply the sales by the profit margin.
+
+To calculate the profit margin for your individual products, subtract product_cost from product_retail for each row. Then divide this value by the product retail to calculate the profit margin percentage:
+
+SELECT product_name, 
+(product_retail - product_cost) / product_retail 
+AS profit_margin
+FROM product_information;
+Output
++-------------------+-------------+
+| product_name  	| profit_margin |
++-------------------+-------------+
+| chamomile         |    0.317333 |
+| chai              |    0.177778 |
+| lavender          |    0.317333 |
+| english_breakfast |    0.317333 |
+| jasmine           |    0.177333 |
+| matcha            |    0.177333 |
+| oolong            |    0.177778 |
+| tea sampler       |    0.294118 |
+| ceramic teapot    |    0.282051 |
+| golden teaspoon   |    0.600000 |
++-------------------+-------------+
+10 rows in set (0.00 sec)
+Based on this output, you’ll learn that the product with the highest profit margin is the golden teaspoon at 60%, and the lowest is for the Chai, Jasmine, Matcha, and Oolong teas at 18%. For the golden teaspoon, this means at a retail value of $5.00 with a profit margin of 60%, you create $3.00 in revenue.
+
+You could also use the aggregate function AVG to calculate the average profit margin for all of the tea shop’s products. This average serves as a benchmark for the tea shop owners to then identify what products fall below that number and strategize how to improve:
+
+SELECT AVG((product_retail - product_cost) / product_retail) 
+AS avg_profit_margin 
+FROM product_information;
+Output
++-------------------+
+| avg_profit_margin |
++-------------------+
+|  	0.2838391151 |
++-------------------+
+1 row in set (0.00 sec)
+From this calculation, you can conclude that the mean profit margin for products at this tea shop is 28%.
+
+With this new information, imagine that the tea shop owners want to increase the profit margin to 31% in the next quarter for any products that currently have a profit margin less than 27%. In order to do this, you’ll subtract your target profit margin from 1 (1 - 0.31) and then divide each of the returned products’ costs by this value. The result will be the new price that the product must sell for at retail to achieve a 31% profit margin:
+
+SELECT product_name, product_cost / (1 - 0.31) 
+AS new_retail 
+FROM product_information 
+WHERE (product_retail - product_cost) / product_retail < 0.27;
+Output
++--------------+------------+
+| product_name | new_retail |
++--------------+------------+
+| chai     	|  10.724638 |
+| jasmine  	|   8.942029 |
+| matcha   	|   8.942029 |
+| oolong   	|  10.724638 |
++--------------+------------+
+4 rows in set (0.00 sec)
+These results display the new retail prices necessary for under-performing products to achieve a 31% profit margin. Data analysis such as this equips the tea shop owners with the ability to make decisive business decisions about how to improve their revenue for the next quarter and understand what to aim for.
+
+Conclusion
+Using mathematical expressions in SQL can range from solving arithmetic problems like you would on a calculator, to performing complex analyses on real-world data that may influence business decisions. If you can recognize the primary mathematical operators and rules for orders of operations, the calculation possibilities are endless. And when you want to analyze your data even further, using these operators with aggregate functions can calculate answers to your “what if” questions that may help with strategic planning
